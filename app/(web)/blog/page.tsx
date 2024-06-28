@@ -44,8 +44,8 @@ const page = () => {
                         <p className="text-secondary font-bold">Category</p>
                       </div>
                       <h3 className="text-white font-bold max-w-md mt-2">
-                        Maximizing Your Land's Potential: Tips for Enhancing
-                        Your Property Before Selling
+                        Maximizing Your Land&apos;s Potential: Tips for
+                        Enhancing Your Property Before Selling
                       </h3>
                     </div>
                   </div>

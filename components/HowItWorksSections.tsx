@@ -19,7 +19,8 @@ const HowItWorksSections = () => {
           <ul className="list-disc px-5 text-sm space-y-5 text-white/80">
             <li>
               Research: Provide us with basic pieces of information using our
-              "Cash Offer Form", and we conduct a research on your property.
+              &quot;Cash Offer Form&quot;, and we conduct a research on your
+              property.
             </li>
             <li>
               Offer Presentation: After research is complete and your property

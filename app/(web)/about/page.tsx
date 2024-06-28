@@ -27,7 +27,7 @@ const page = () => {
             <SectionHeading>Overview of Sundial Lands</SectionHeading>
             <p>
               Our platform is designed to make selling land simple, transparent,
-              and rewarding. If you're looking for a platform that empowers
+              and rewarding. If you&apos;re looking for a platform that empowers
               individuals and investors to unlock the full potential of their
               properties, Sundial Lands is here to help you every step of the
               way.
@@ -128,7 +128,7 @@ const page = () => {
             <SectionHeading>Your Partner in Land Sale Success</SectionHeading>
             <p>
               Our platform is designed to make selling land simple, transparent,
-              and rewarding. If you're looking for a platform that empowers
+              and rewarding. If you&apos;re looking for a platform that empowers
               individuals and investors to unlock the full potential of their
               properties, Sundial Lands is here to help you every step of the
               way.

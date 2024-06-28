@@ -128,7 +128,7 @@ const page = () => {
             </SectionHeading>
             <p>
               Our platform is designed to make selling land simple, transparent,
-              and rewarding. If you're looking for a platform that empowers
+              and rewarding. If you&apos;re looking for a platform that empowers
               individuals and investors to unlock the full potential of their
               properties, Sundial Lands is here to help you every step of the
               way.
@@ -203,7 +203,7 @@ const page = () => {
               <SectionHeading>A Trending Land Selling Platform</SectionHeading>
               <ul className=" text-sm space-y-5">
                 <li>
-                  We're more than just a land selling platform – we're
+                  We&apos;re more than just a land selling platform – we&apos;re
                   architects of dreams and facilitators of possibilities. Our
                   story is one of passion, innovation, and a relentless
                   commitment to changing lives through exceptional land selling
@@ -227,13 +227,14 @@ const page = () => {
       <section className="section-paddings bg-[#f6f6f6]">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto">
-            <SectionSubheading>Client’s Testimonial</SectionSubheading>
+            <SectionSubheading>Client&apos;s Testimonial</SectionSubheading>
             <SectionHeading>What Our Clients Say</SectionHeading>
             <p>
-              Our clients' satisfaction is at the heart of everything we do.
-              We're proud to share their voices and experiences, as they reflect
-              our quality, expertise, and dedication. Discover the stories of
-              those who have found success and fulfillment with Sundial Lands.
+              Our clients&apos; satisfaction is at the heart of everything we
+              do. We&apos;re proud to share their voices and experiences, as
+              they reflect our quality, expertise, and dedication. Discover the
+              stories of those who have found success and fulfillment with
+              Sundial Lands.
             </p>
           </div>
         </div>

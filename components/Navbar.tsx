@@ -44,7 +44,7 @@ const Navbar = () => {
             {navBarLinks.map((link, index) => (
               <li key={index}>
                 <Link
-                  href={link.path}
+                  href={link.path} 
                   className={cn(
                     "text-white hover:text-secondary transition-all font-popins max-lg:text-black ",
                     pathname === link.path && "text-secondary"

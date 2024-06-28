@@ -23,7 +23,7 @@ const NewsletterSection = () => {
             Subscribe To Our Newsletter
           </SectionHeading>
           <p className="text-white/80">
-            We offer more than just property selling – it's a gateway to
+            We offer more than just property selling – it&apos;s a gateway to
             discovering your dreams. From insightful blog articles to
             neighborhood guides, market trends, and expert advice.
           </p>

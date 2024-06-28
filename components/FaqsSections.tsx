@@ -18,9 +18,9 @@ const FaqsSections = () => {
           <SectionHeading>Frequently Asked Questions</SectionHeading>
           <p>
             Explore our comprehensive FAQ section to find answers to common
-            questions about RockMould's services, the real estate process, and
-            more. If you don't see your question listed, feel free to reach out
-            to our team for personalized assistance.
+            questions about RockMould&apos;s services, the real estate process,
+            and more. If you don&apos;t see your question listed, feel free to
+            reach out to our team for personalized assistance.
           </p>
         </div>
         <div className="shadow-box p-5 md:p-10 rounded-2xl mt-10">

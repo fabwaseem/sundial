@@ -83,6 +83,7 @@ const BlogSidebar = () => {
         <div>
           {Array.from({ length: 3 }).map((_, index) => (
             <Link
+              key={index}
               href={"#"}
               className="block text-xs font-bold text-black py-3 border-b last:border-none"
             >
