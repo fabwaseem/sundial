@@ -1,6 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Input } from "./ui/input";
 import {
   Select,
@@ -14,18 +13,6 @@ import {
 import { Button } from "./ui/button";
 
 const EvaluateForm = () => {
-  const [formData, setFormData] = useState({
-    state: "",
-    county: "",
-    apn: "",
-  });
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (searchParams.has("state")) {
-    }
-  }, []);
-
   return (
     <form className="mt-10 space-y-5">
       <div>
