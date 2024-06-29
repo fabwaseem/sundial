@@ -53,7 +53,7 @@ const HowItWorksSections = () => {
             <Image
               src={"/images/how-it-works.jpg"}
               alt="hero-image"
-              layout="fill"
+              fill
               className="object-cover rounded-3xl"
             />
           </div>

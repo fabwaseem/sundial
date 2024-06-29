@@ -64,7 +64,7 @@ const page = () => {
                 <Image
                   src="/images/preview.jpg"
                   alt="hero-image"
-                  layout="fill"
+                  fill
                   className="object-cover"
                 />
                 <div className="absolute  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
@@ -181,7 +181,7 @@ const page = () => {
               <Image
                 src={"/images/preview.jpg"}
                 alt="hero-image"
-                layout="fill"
+                fill
                 className="object-cover"
               />
             </div>
@@ -191,7 +191,7 @@ const page = () => {
               <Image
                 src={"/images/preview.jpg"}
                 alt="hero-image"
-                layout="fill"
+                fill
                 className="object-cover"
               />{" "}
               <div className="absolute  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">

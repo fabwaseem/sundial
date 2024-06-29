@@ -39,7 +39,7 @@ const page = () => {
                 key={index}
                 className="flex flex-col items-center space-y-3 text-center"
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center bg-[linear-gradient(270deg,_#219531_0%,_#0A622D_100%)]">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center bg-[linear-gradient(270deg,_#219531_0%,_#0A622D_100%)] text-white">
                   <feature.icon />
                 </div>
                 <h4 className="text-lg font-bold capitalize text-primary">
@@ -79,7 +79,7 @@ const page = () => {
               <Image
                 src={"/images/preview.jpg"}
                 alt="hero-image"
-                layout="fill"
+                fill
                 className="object-cover"
               />
             </div>
@@ -89,7 +89,7 @@ const page = () => {
               <Image
                 src={"/images/preview.jpg"}
                 alt="hero-image"
-                layout="fill"
+                fill
                 className="object-cover"
               />{" "}
               <div className="absolute  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
