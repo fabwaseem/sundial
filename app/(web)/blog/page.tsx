@@ -11,11 +11,36 @@ import {
 import Image from "next/image";
 import { Icons } from "@/components/Icons";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import BlogSidebar from "@/components/BlogSidebar";
+import { client } from "@/sanity/lib/client";
+import { Post } from "@/types";
+import { urlForImage } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
+import Link from "next/link";
+import { fetchPosts } from "@/sanity/lib/utisl";
 
-const page = () => {
+export const revalidate = 1;
+
+const page = async () => {
+  const featuredPosts: Post[] = await fetchPosts({
+    filterCondition: " && featured == true",
+  });
+
+  const recommendedPosts: Post[] = await fetchPosts({
+    filterCondition: " && recommendations == true",
+    limit: 3,
+  });
+
+  const latestPosts: Post[] = await fetchPosts({
+    orderCondition: "publishedAt desc",
+    limit: 10,
+  });
+
+  const trendingPosts: Post[] = await fetchPosts({
+    orderCondition: "viewCount desc",
+    limit: 3,
+  });
+
   return (
     <>
       <PageBreadcrumbs
@@ -27,30 +52,41 @@ const page = () => {
         <div className="container">
           <Carousel className="w-full relative">
             <CarouselContent>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={index}>
-                  <div className="relative min-h-72 rounded-lg overflow-hidden ">
-                    <Image
-                      src={"/images/preview.jpg"}
-                      alt={"Placeholder"}
-                      fill
-                      className={"object-cover -z-10"}
-                    />
-                    <div className="absolute w-full h-full bg-black/25 -z-10"></div>
-                    <div className="pt-56 pb-3 h-full pl-5 md:pl-10 ">
-                      <div className="flex text-white gap-2 text-sm  items-center">
-                        <p>August 11, 2023 </p>
-                        <Icons.folder size={20} />
-                        <p className="text-secondary font-bold">Category</p>
+              {featuredPosts &&
+                featuredPosts.map((post, index) => (
+                  <CarouselItem key={index}>
+                    <Link
+                      href={`/blog/${post.slug.current}`}
+                      className="relative min-h-72 rounded-lg overflow-hidden "
+                    >
+                      <Image
+                        src={urlForImage(post.mainImage).toString()}
+                        alt={post.title}
+                        fill
+                        className={"object-cover -z-10"}
+                      />
+                      <div className="absolute w-full h-full bg-black/35 -z-10"></div>
+                      <div className="pt-56 pb-3 h-full pl-5 md:pl-10 ">
+                        <div className="flex text-white gap-2 text-sm  items-center">
+                          <p>
+                            {new Intl.DateTimeFormat("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "2-digit",
+                            }).format(new Date(post.publishedAt))}
+                          </p>
+                          <Icons.folder size={20} />
+                          <p className="text-secondary font-bold">
+                            {post.category?.title}
+                          </p>
+                        </div>
+                        <h3 className="text-white font-bold max-w-md mt-2">
+                          {post.title}
+                        </h3>
                       </div>
-                      <h3 className="text-white font-bold max-w-md mt-2">
-                        Maximizing Your Land&apos;s Potential: Tips for
-                        Enhancing Your Property Before Selling
-                      </h3>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
+                    </Link>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
             <div className="absolute right-5 bottom-0 ">
               <CarouselPrevious className="static mr-4 bg-white text-black" />
@@ -67,30 +103,44 @@ const page = () => {
             single-day virtual event.{" "}
           </p>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-x-5 gap-y-6">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <div key={index}>
-                <div className="pb-[80%] w-full relative">
-                  <Image
-                    src="/images/preview.jpg"
-                    alt="hero-image"
-                    fill
-                    className="object-cover rounded-lg"
+            {trendingPosts &&
+              trendingPosts.map((post, index) => (
+                <Link href={`/blog/${post.slug.current}`} key={index}>
+                  <div className="pb-[80%] w-full relative">
+                    <Image
+                      src={urlForImage(post.mainImage).toString()}
+                      alt={post.title}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                  <h3 className="text-primary mt-3 font-bold">{post.title}</h3>
+                  <PortableText
+                    // @ts-ignore
+                    value={post.body.slice(1, 2)}
+                    components={{
+                      block: {
+                        normal: ({ children }) => (
+                          <p className="line-clamp-2 text-xs mt-3 font-popins">
+                            {children}
+                          </p>
+                        ),
+                      },
+                    }}
                   />
-                </div>
-                <h3 className="text-primary mt-3 font-bold">
-                  Keys to Finding a Perfect Home
-                </h3>
-                <p className="line-clamp-2 text-xs mt-3 font-popins">
-                  Navigate the journey to homeownership with confidence. These
-                  keys will help you explore...
-                </p>
-                <div className="flex mt-5 gap-2 text-xs  items-center font-semibold">
-                  <p>August 11, 2023 </p>
-                  <Icons.folder size={16} className="text-primary" />
-                  <p className="text-secondary ">Category</p>
-                </div>
-              </div>
-            ))}
+                  <div className="flex mt-5 gap-2 text-xs  items-center font-semibold">
+                    <p>
+                      {new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "2-digit",
+                      }).format(new Date(post.publishedAt))}
+                    </p>
+                    <Icons.folder size={16} className="text-primary" />
+                    <p className="text-secondary ">{post.category?.title}</p>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </section>
@@ -103,42 +153,61 @@ const page = () => {
           </p>
           <div className="mt-8 flex flex-col md:flex-row gap-10">
             <div className=" flex flex-col gap-10">
-              {Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="flex gap-3 max-sm:flex-col">
-                  <div className="pb-[80%] sm:pb-[25%] sm:w-72 w-full shrink-0 relative">
-                    <Image
-                      src="/images/preview.jpg"
-                      alt="hero-image"
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex gap-2 text-xs  items-center font-semibold">
-                      <Icons.folder size={16} className="text-primary" />
-                      <p className="text-secondary ">Category</p>
+              {latestPosts &&
+                latestPosts.map((post, index) => (
+                  <Link
+                    href={`/blog/${post.slug.current}`}
+                    key={index}
+                    className="flex gap-3 max-sm:flex-col"
+                  >
+                    <div className="pb-[80%] sm:pb-[25%] sm:w-72 w-full shrink-0 relative">
+                      <Image
+                        src={urlForImage(post.mainImage).toString()}
+                        alt={post.title}
+                        fill
+                        className="object-cover rounded-lg"
+                      />
                     </div>
-                    <h3 className="text-primary mt-3 font-bold">
-                      Keys to Finding a Perfect Home
-                    </h3>
-                    <p className="line-clamp-5 text-xs mt-3 font-popins">
-                      All the aspects you cherish from the conference compressed
-                      into a single-day virtual event. All the aspects you
-                      cherish from the conference compressed into a single-day
-                      virtual event. All the aspects you cherish from the
-                      conference
-                    </p>
-                    <Separator className="my-4" />
-                    <div className="flex gap-2 text-xs  items-center justify-between ">
-                      <p className="font-semibold">August 11, 2023 </p>
-                      <div className="flex items-center gap-2">
-                        <Icons.message className="text-primary" size={16} />{" "}
-                        <p>5 Comments</p>
+                    <div>
+                      <div className="flex gap-2 text-xs  items-center font-semibold">
+                        <Icons.folder size={16} className="text-primary" />
+                        <p className="text-secondary ">
+                          {post.category?.title}
+                        </p>
+                      </div>
+                      <h3 className="text-primary mt-3 font-bold">
+                        {post.title}
+                      </h3>
+                      <PortableText
+                        // @ts-ignore
+                        value={post.body.slice(1, 2)}
+                        components={{
+                          block: {
+                            normal: ({ children }) => (
+                              <p className="line-clamp-5 text-xs mt-3 font-popins">
+                                {children}
+                              </p>
+                            ),
+                          },
+                        }}
+                      />
+                      <Separator className="my-4" />
+                      <div className="flex gap-2 text-xs  items-center justify-between ">
+                        <p className="font-semibold">
+                          {new Intl.DateTimeFormat("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "2-digit",
+                          }).format(new Date(post.publishedAt))}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <Icons.message className="text-primary" size={16} />{" "}
+                          <p>5 Comments</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </Link>
+                ))}
             </div>
             <BlogSidebar />
           </div>
@@ -152,30 +221,44 @@ const page = () => {
             single-day virtual event.
           </p>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-x-5 gap-y-6">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <div key={index}>
-                <div className="pb-[80%] w-full relative">
-                  <Image
-                    src="/images/preview.jpg"
-                    alt="hero-image"
-                    fill
-                    className="object-cover rounded-lg"
+            {recommendedPosts &&
+              recommendedPosts.map((post, index) => (
+                <Link href={`/blog/${post.slug.current}`} key={index}>
+                  <div className="pb-[80%] w-full relative">
+                    <Image
+                      src={urlForImage(post.mainImage).toString()}
+                      alt={post.title}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="flex mt-5 gap-2 text-xs  items-center font-semibold">
+                    <p>
+                      {new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "2-digit",
+                      }).format(new Date(post.publishedAt))}
+                    </p>
+                    <Icons.folder size={16} className="text-primary" />
+                    <p className="text-secondary ">{post.category?.title}</p>
+                  </div>
+                  <h3 className="text-primary mt-3 font-bold">{post.title}</h3>
+                  <PortableText
+                    // @ts-ignore
+                    value={post.body.slice(1, 2)}
+                    components={{
+                      block: {
+                        normal: ({ children }) => (
+                          <p className="line-clamp-2 text-xs mt-3 font-popins">
+                            {children}
+                          </p>
+                        ),
+                      },
+                    }}
                   />
-                </div>
-                <div className="flex mt-5 gap-2 text-xs  items-center font-semibold">
-                  <p>August 11, 2023 </p>
-                  <Icons.folder size={16} className="text-primary" />
-                  <p className="text-secondary ">Category</p>
-                </div>
-                <h3 className="text-primary mt-3 font-bold">
-                  Keys to Finding a Perfect Home
-                </h3>
-                <p className="line-clamp-2 text-xs mt-3 font-popins">
-                  Navigate the journey to homeownership with confidence. These
-                  keys will help you explore...
-                </p>
-              </div>
-            ))}
+                </Link>
+              ))}
           </div>
         </div>
       </section>

@@ -5,27 +5,48 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { socialLinks } from "@/config/site";
 import Link from "next/link";
+import { fetchCategories, fetchPosts } from "@/sanity/lib/utisl";
+import { Category, Post } from "@/types";
+import { PortableText } from "next-sanity";
 
-const BlogSidebar = () => {
+const BlogSidebar = async () => {
+  const latestPosts: Post[] = await fetchPosts({
+    orderCondition: "publishedAt desc",
+    limit: 5,
+  });
+  const categories: Category[] = await fetchCategories();
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:max-w-xs md:sticky top-10 h-fit">
       <div>
         <h3 className="text-sm font-bold">Recent</h3>
         <div className="mt-8 space-y-6">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index}>
-              <h3 className="text-primary text-sm font-semibold">
-                Top Rated Real Estate Platform with Years
-              </h3>
-              <p className="line-clamp-2 text-xs my-2">
-                All the aspects you cherish from the conference compressed into
-                a single-day virtual event.
-              </p>
-              <p className="text-xs font-semibold text-black/70">
-                August 11, 2023{" "}
-              </p>
-            </div>
-          ))}
+          {latestPosts &&
+            latestPosts.map((post, index) => (
+              <Link href={`/blog/${post.slug.current}`} key={index}>
+                <h3 className="text-primary text-sm font-semibold">
+                  {post.title}
+                </h3>
+                <PortableText
+                  // @ts-ignore
+                  value={post.body.slice(1, 2)}
+                  components={{
+                    block: {
+                      normal: ({ children }) => (
+                        <p className="line-clamp-2 text-xs my-2">{children}</p>
+                      ),
+                    },
+                  }}
+                />
+                <p className="text-xs font-semibold text-black/70">
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(post.publishedAt))}
+                </p>
+              </Link>
+            ))}
         </div>
       </div>
       <Separator />
@@ -81,15 +102,16 @@ const BlogSidebar = () => {
       <div>
         <h3 className="text-sm font-bold">Categories</h3>
         <div>
-          {Array.from({ length: 3 }).map((_, index) => (
-            <Link
-              key={index}
-              href={"#"}
-              className="block text-xs font-bold text-black py-3 border-b last:border-none"
-            >
-              Category
-            </Link>
-          ))}
+          {categories &&
+            categories.map((category, index) => (
+              <Link
+                key={index}
+                href={`/blog/category/${category.slug.current}`}
+                className="block text-xs font-bold text-black py-3 border-b last:border-none"
+              >
+                {category.title}
+              </Link>
+            ))}
         </div>
       </div>
     </div>

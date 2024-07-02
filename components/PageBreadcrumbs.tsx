@@ -10,7 +10,7 @@ import { StaticImageData } from "next/image";
 interface Props {
   title: string;
   description: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
 }
 
 const PageBreadcrumbs = ({ title, description, image }: Props) => {
@@ -22,9 +22,11 @@ const PageBreadcrumbs = ({ title, description, image }: Props) => {
     <section
       className="pt-32 pb-14"
       style={{
-        background: `url(${image.src}) rgba(0, 0, 0, 0.68)`,
+        background: `url(${
+          typeof image === "string" ? image : image.src
+        }) rgba(0, 0, 0, 0.68)`,
         backgroundSize: "cover",
-        backgroundPosition: "top center",
+        backgroundPosition: "center",
         backgroundBlendMode: "overlay",
       }}
     >
@@ -37,16 +39,19 @@ const PageBreadcrumbs = ({ title, description, image }: Props) => {
           <Link href={"/"}>Home</Link>
           <Icons.chevronRightOutline />
           {paths.map((item, index) => (
-            <Link
-              key={index}
-              href={`/${item}`}
-              className={cn(
-                "capitalize",
-                paths[paths.length - 1] === item && "text-secondary"
-              )}
-            >
-              {item}
-            </Link>
+            <span key={index} className="flex items-center gap-4">
+              <Link
+                href={`/${item}`}
+                className={cn(
+                  "capitalize",
+                  paths[paths.length - 1] === item && "text-secondary"
+                )}
+              >
+                {/* if length more than 10 slice and add... */}
+                {item.length > 12 ? item.slice(0, 12) + "..." : item}
+              </Link>
+              {index !== paths.length - 1 && <Icons.chevronRightOutline />}
+            </span>
           ))}
         </div>
       </div>
