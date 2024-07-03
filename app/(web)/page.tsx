@@ -1,27 +1,18 @@
-import { HeroBg } from "@/assets";
+import { HeroBg, States } from "@/assets";
 import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import SectionSubheading from "@/components/SectionSubheading";
 import SectionHeading from "@/components/SectionHeading";
-import { features, stats } from "@/config/site";
+import { features } from "@/config/site";
 import NewsletterSection from "@/components/NewsletterSection";
 import EmblaCarousel from "@/components/EmblaCarousel";
 import StatsSection from "@/components/StatsSection";
 import HowItWorksSections from "@/components/HowItWorksSections";
 import FaqsSections from "@/components/FaqsSections";
+import HomePageForm from "@/components/HomePageForm";
 
 const page = () => {
   return (
@@ -46,12 +37,12 @@ const page = () => {
               their lands- connecting you with high-value buyers and giving you
               a cash offer within days.
             </p>
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-2 md:gap-5 ">
               <Button asChild>
                 <Link href={"/contact"}>Contact Us</Link>
               </Button>
               <Button asChild variant={"outline"}>
-                <Link href={"/about"}>Learn MOre</Link>
+                <Link href={"/about"}>Learn More</Link>
               </Button>
             </div>
           </div>
@@ -71,50 +62,7 @@ const page = () => {
                   <Icons.play size={24} />
                 </div>
               </div>
-              <form
-                action="/evaluate"
-                method="get"
-                className="w-full mt-5 space-y-5 font-popins"
-              >
-                <Select name="state" required>
-                  <SelectTrigger icon={<Icons.pin />}>
-                    <SelectValue placeholder="Enter Property State" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="apple">Apple</SelectItem>
-                      <SelectItem value="banana">Banana</SelectItem>
-                      <SelectItem value="blueberry">Blueberry</SelectItem>
-                      <SelectItem value="grapes">Grapes</SelectItem>
-                      <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <Select name="county" required>
-                  <SelectTrigger icon={<Icons.planeBoxed />}>
-                    <SelectValue placeholder="Enter Property County" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="apple">Apple</SelectItem>
-                      <SelectItem value="banana">Banana</SelectItem>
-                      <SelectItem value="blueberry">Blueberry</SelectItem>
-                      <SelectItem value="grapes">Grapes</SelectItem>
-                      <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <Input
-                  name="apn"
-                  type="text"
-                  required
-                  placeholder="Enter APN"
-                  icon={<Icons.target />}
-                />
-                <Button type="submit" className="w-full">
-                  Evaluate Your Property Now
-                </Button>
-              </form>
+              <HomePageForm />
             </div>
           </div>
         </div>

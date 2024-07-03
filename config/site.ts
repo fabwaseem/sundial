@@ -10,7 +10,7 @@ export const navBarLinks = [
     label: "About",
   },
   {
-    path: "/portfolio",
+    path: "#",
     label: "Portfolio",
   },
   {

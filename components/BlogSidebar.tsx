@@ -106,7 +106,8 @@ const BlogSidebar = async () => {
             categories.map((category, index) => (
               <Link
                 key={index}
-                href={`/blog/category/${category.slug.current}`}
+                // `/blog/category/${category.slug.current}`
+                href={"#"}
                 className="block text-xs font-bold text-black py-3 border-b last:border-none"
               >
                 {category.title}

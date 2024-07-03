@@ -6,6 +6,7 @@ import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { fetchPostBySlug, fetchPosts } from "@/sanity/lib/utisl";
 import { Post } from "@/types";
+import urlBuilder from "@sanity/image-url";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +42,13 @@ const page = async ({ params }: Props) => {
               <PortableText
                 // @ts-ignore
                 value={post.body}
+                components={{
+                  types: {
+                    image: ({ value, isInline }) => (
+                      <img className="w-full" src={urlForImage(value)} />
+                    ),
+                  },
+                }}
               />
             </article>
             <BlogSidebar />
