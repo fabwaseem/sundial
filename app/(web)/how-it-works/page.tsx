@@ -1,6 +1,7 @@
 import { EvaluateHeader } from "@/assets";
 import HowItWorksSections from "@/components/HowItWorksSections";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import { contactDetails } from "@/config/site";
 import Image from "next/image";
 import React from "react";
 
@@ -22,20 +23,21 @@ const page = () => {
               <h3>Selling land the easy way</h3>
               <p>
                 We follow a tried and true process of purchasing your property.
-                You don&apos;t have to deal with paperwork, you don&apos;t have to talk to
-                county authorities, and you don&apos;t have to travel at all. In
-                total it literally takes only about 15 minutes of your valuable
-                time from offer request to cash payout. We take care of all
-                time-consuming tasks that you would have todo yourself if you
-                would sell your land by yourself or with a realtor.
+                You don&apos;t have to deal with paperwork, you don&apos;t have
+                to talk to county authorities, and you don&apos;t have to travel
+                at all. In total it literally takes only about 15 minutes of
+                your valuable time from offer request to cash payout. We take
+                care of all time-consuming tasks that you would have todo
+                yourself if you would sell your land by yourself or with a
+                realtor.
               </p>
               <h3>Simple 3-Step Land Selling Process</h3>
               <p>
-                We&apos;re land owners as well and know the hassle it can be to sell
-                a piece of land you don&apos;t want. But we&apos;ve honed in our land
-                buying process to 3 simple steps to make turning your unwanted
-                land into cash as simple as possible. Learn more about the
-                process to sell land to ExpressLandOffers.
+                We&apos;re land owners as well and know the hassle it can be to
+                sell a piece of land you don&apos;t want. But we&apos;ve honed
+                in our land buying process to 3 simple steps to make turning
+                your unwanted land into cash as simple as possible. Learn more
+                about the process to sell land to ExpressLandOffers.
               </p>
 
               <Image
@@ -54,13 +56,17 @@ const page = () => {
                   reasearch your property and craft an offer that best fits your
                   situation. The best way is to
                   <span className="text-blue-600">
+                    {" "}
                     submit the data directly on this website
                   </span>
                   . This allows you to lookup the missing pieces of information
                   without ruffle or excitement. If you prefer talking to one of
                   our Land Buying Specialists just give us a call{" "}
-                  <a className="text-blue-600" href="tel:+14086502863">
-                    +1-4086502863
+                  <a
+                    className="text-blue-600"
+                    href={`tel:+1${contactDetails.phone}`}
+                  >
+                    {contactDetails.phone}
                   </a>
                   .
                 </p>
@@ -78,12 +84,12 @@ const page = () => {
                 After you submitted your property information, we will research
                 the vacant land parcel at the county office and will present you
                 with an all-cash offer. You will receive our fair cash offer for
-                your land within 2 business days. Usually, when we don&apos;t have to
-                talk to local authorities, we&apos;re much faster than that. There is
-                absolutely no obligation or hassle ever. Once you sign the
-                offer, you can return it to us through email or snail mail via
-                United States Postal Service. If you have any questions, just
-                contact us and we will explain every detail.
+                your land within 2 business days. Usually, when we don&apos;t
+                have to talk to local authorities, we&apos;re much faster than
+                that. There is absolutely no obligation or hassle ever. Once you
+                sign the offer, you can return it to us through email or snail
+                mail via United States Postal Service. If you have any
+                questions, just contact us and we will explain every detail.
               </p>
               <Image
                 src="/images/how-it-works.jpg"

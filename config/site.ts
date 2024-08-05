@@ -241,7 +241,7 @@ export const footerQuickLinks = [
 export const contactDetails = {
   address: "13603 Marina Pointe Dr, Suite C311 Marina Del Rey, CA. 90292",
   email: "offers@sundiallands.com",
-  phone: "+1 (424) 203-4132",
+  phone: "4086281674 ",
 };
 
 export const aboutPageFeatures = [

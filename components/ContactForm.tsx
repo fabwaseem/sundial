@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
+import Link from "next/link";
 
 const ContactForm = () => {
   return (
@@ -57,12 +58,15 @@ const ContactForm = () => {
             htmlFor="terms1"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
-            I agree to be contacted by ABC Realty LLC. via call. email. and
-            text.
+            I agree to receive marketing and customer service calls and text
+            messages from Sundial Land.
           </label>
           <p className="text-sm text-muted-foreground">
-            To opt out, you can reply •stop&apos; at any time or click the
-            unsubscribe link in the emails. Message and data rates may apply.
+            Consent is not a condition of purchase. Msg/data rates may apply.
+            Msg frequency varies. Reply STOP to unsubscribe.{" "}
+            <Link href={"/privacy-policy"} className="text-accent font-bold">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>

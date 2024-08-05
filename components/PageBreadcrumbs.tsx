@@ -48,7 +48,9 @@ const PageBreadcrumbs = ({ title, description, image }: Props) => {
                 )}
               >
                 {/* if length more than 10 slice and add... */}
-                {item.length > 12 ? item.slice(0, 12) + "..." : item}
+                {item.length > 12
+                  ? item.replaceAll("-", " ").slice(0, 12) + "..."
+                  : item.replaceAll("-", " ")}
               </Link>
               {index !== paths.length - 1 && <Icons.chevronRightOutline />}
             </span>

@@ -38,14 +38,14 @@ const Navbar = () => {
           </Link>
           <Link
             href={
-              "https://api.whatsapp.com/send/?phone=14086502863&text&type=phone_number&app_absent=0"
+              "https://api.whatsapp.com/send/?phone=4086281674&text&type=phone_number&app_absent=0"
             }
             target="_blank"
             className="text-white text-right flex items-center gap-2"
           >
             <div>
               <h3>Service Hotline</h3>
-              <p className="text-secondary">40-86502863</p>
+              <p className="text-secondary">4086281674</p>
             </div>
             <Image
               src={"/images/whatsapp.png"}

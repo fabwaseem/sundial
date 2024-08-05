@@ -22,6 +22,7 @@ const EvaluateForm = () => {
         <Input
           type="text"
           id="location"
+          required
           placeholder="State, County, City, Town, Street, Address, Number"
           className="bg-transparent border-input text-black placeholder:text-black/50  "
         />
@@ -34,6 +35,7 @@ const EvaluateForm = () => {
           <Input
             type="email"
             id="email"
+            required
             placeholder="Enter email address"
             className="bg-transparent border-input text-black placeholder:text-black/50  "
           />
@@ -45,6 +47,7 @@ const EvaluateForm = () => {
           <Input
             type="text"
             id="phone"
+            required
             placeholder="Enter phone number"
             className="bg-transparent border-input text-black placeholder:text-black/50  "
           />
@@ -58,63 +61,36 @@ const EvaluateForm = () => {
           >
             Property Type
           </label>
-          <Select name="state" required>
-            <SelectTrigger className="bg-transparent border-input text-black placeholder:text-black/50  ">
-              <SelectValue placeholder="Select property type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Input
+            type="text"
+            id="property-type"
+            placeholder="Enter property type"
+            className="bg-transparent border-input text-black placeholder:text-black/50  "
+          />
         </div>
         <div className="w-full">
           <label className="text-sm font-semibold mb-2 block">
             Does The Property Have Road Access?
           </label>
-          <Select name="state" required>
-            <SelectTrigger className="bg-transparent border-input text-black placeholder:text-black/50  ">
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Input
+            type="text"
+            id="property-type"
+            placeholder="Yes/No"
+            className="bg-transparent border-input text-black placeholder:text-black/50  "
+          />
         </div>
       </div>
       <div className="flex gap-5 flex-col md:flex-row md:gap-10 items-center">
         <div className="w-full">
-          <label
-            className="text-sm font-semibold mb-2 block"
-            htmlFor="property-type"
-          >
+          <label className="text-sm font-semibold mb-2 block" htmlFor="nearby">
             List Nearby Amenities
           </label>
-          <Select name="state" required>
-            <SelectTrigger className="bg-transparent border-input text-black placeholder:text-black/50  ">
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Input
+            type="text"
+            id="nearby"
+            placeholder="Nearby Emenities"
+            className="bg-transparent border-input text-black placeholder:text-black/50  "
+          />
         </div>
         <div className="w-full">
           <label className="text-sm font-semibold mb-2 block" htmlFor="price">
